@@ -1,0 +1,24 @@
+MAUTIC 7.0 - INSTALLATION GUIDE
+================================
+
+There are several ways to install Mautic. Select the method most
+appropriate for your situation and technical knowledge.
+
+METHODS
+-------
+
+[Production Package]
+  Install from a zip package using the web-based installer or
+  the command line. Requires a database server.
+
+[GitHub Clone]
+  Clone from GitHub for testing and local development. Includes
+  access to automated tests and dev resources.
+
+[Composer]
+  Install and manage Mautic using Composer (Mautic 4+).
+  Uses the Recommended Project template.
+
+[DDEV]
+  Recommended local environment for testing and development.
+  Includes Mailhog, PHPMyAdmin, Redis Commander.

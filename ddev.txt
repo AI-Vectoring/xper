@@ -1,0 +1,53 @@
+DDEV
+====
+
+[Index] > [GitHub Clone]
+
+DDEV is Mautic's recommended tool for local testing and
+development. It provides a consistent containerized environment.
+
+Use cases: backups, testing new features, testing bug fixes,
+contributing to Mautic.
+
+PREREQUISITES
+-------------
+
+* Docker installed and running on your system.
+* DDEV installed.
+
+SETUP
+-----
+
+1. Clone the Mautic repo. See [GitHub Clone].
+
+2. Change into the Mautic directory.
+
+3. Run:
+
+     ddev start
+
+This spins up a DDEV instance at:
+
+  https://mautic.ddev.site
+
+INCLUDED SERVICES
+-----------------
+
+  Mailhog         - local email testing
+  PHPMyAdmin      - database management UI
+  Redis Commander - Redis UI
+
+DEFAULT CREDENTIALS
+-------------------
+
+  Username: admin
+  Password: Maut1cR0cks!
+
+  Note: on Mautic versions before 5.1 the default password
+  is simply: mautic
+
+TROUBLESHOOTING
+---------------
+
+See the DDEV Troubleshooting documentation and Mautic's
+Contributor Handbook for detailed instructions.

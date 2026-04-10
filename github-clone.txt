@@ -1,0 +1,35 @@
+GITHUB CLONE
+============
+
+[Index]
+
+Clone the Mautic repository from GitHub when testing Mautic
+or contributing to it. This method gives access to automated
+tests and dev resources not included in the production build.
+
+CLONING
+-------
+
+1. Install the GitHub CLI tool.
+
+2. Fork the Mautic repository. Click Fork at the top-right of
+   the Mautic GitHub repo page.
+
+   IMPORTANT: Fork into a personal account, not an organization.
+   Organizational forks prevent Mautic maintainers from working
+   with your Pull Request.
+
+3. Click the green Code button to get the clone command.
+
+4. In your terminal, navigate to your target directory, then run:
+
+     gh repo clone username/mautic
+
+NEXT STEPS
+----------
+
+After cloning, use [DDEV] to spin up a full local environment.
+
+[DDEV]
+  Mautic's recommended tool for local testing and development.
+  Includes Mailhog, PHPMyAdmin, and Redis Commander.

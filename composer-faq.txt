@@ -1,0 +1,66 @@
+COMPOSER FAQ
+============
+
+[Index] > [Composer]
+
+SHOULD YOU COMMIT THIRD-PARTY PLUGINS?
+---------------------------------------
+
+Composer's guidance is generally no. They provide arguments
+against committing dependencies but also workarounds if a
+project decides to do it anyway.
+
+SHOULD YOU COMMIT SCAFFOLDING FILES?
+--------------------------------------
+
+The Mautic Composer Scaffold Plugin can download scaffold files
+(e.g. index.php, .htaccess) into the docroot/ directory.
+
+If you have not customized those files, you can choose not to
+commit them in version control.
+
+To automate scaffold generation after every install or update,
+register it in composer.json:
+
+  "scripts": {
+      "post-install-cmd": [
+          "@composer mautic:scaffold"
+      ],
+      "post-update-cmd": [
+          "@composer mautic:scaffold"
+      ]
+  }
+
+HOW TO APPLY PATCHES TO PLUGINS?
+----------------------------------
+
+Use the composer-patches plugin. Add a patches section to the
+extra section of composer.json:
+
+  "extra": {
+      "patches": {
+          "mautic/foobar": {
+              "Patch description": "URL or local path to patch"
+          }
+      }
+  }
+
+Note: for bugs in a plugin, a pull request is usually a better
+solution than a patch.
+
+HOW TO SPECIFY A PHP VERSION?
+------------------------------
+
+Minimum supported version is PHP 7.4. A Composer update may
+pull in packages that require PHP 7+ or 8+. To prevent
+unintended upgrades, pin the PHP version in composer.json:
+
+  "config": {
+      "sort-packages": true,
+      "platform": {
+          "php": "7.4"
+      }
+  }
+
+Always cross-check against Mautic's current Requirements docs,
+as the minimum supported version may change between releases.

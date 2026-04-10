@@ -1,0 +1,93 @@
+CLI INSTALL
+===========
+
+[Index] > [Production Package]
+
+Install Mautic from the command line by passing parameters
+directly, or by pointing to a local.php configuration file.
+
+Note: Mautic requires a complex password from version 5.1.
+
+List all available options:
+
+  path/to/php bin/console mautic:install --help
+
+DATABASE PARAMETERS
+-------------------
+
+  --db_driver           Database driver. Default: pdo_mysql
+  --db_host             Database host.
+  --db_port             Database port.
+  --db_name             Database name.
+  --db_user             Database user.
+  --db_password         Database password.
+  --db_table_prefix     Database tables prefix.
+  --db_backup_tables    Backup tables if they exist, else drop them.
+                        Default: true
+  --db_backup_prefix    Backup tables prefix. Default: bak_
+
+ADMIN PARAMETERS
+----------------
+
+  --admin_firstname     Admin first name.
+  --admin_lastname      Admin last name.
+  --admin_username      Admin username.
+  --admin_email         Admin email.
+  --admin_password      Admin password.
+
+MAILER PARAMETERS
+-----------------
+
+  --mailer_from_name    From name for outgoing email.
+  --mailer_from_email   From address for outgoing email.
+  --mailer_transport    Mail transport.
+  --mailer_host         SMTP host.
+  --mailer_port         SMTP port.
+  --mailer_user         SMTP username.
+  --mailer_password     SMTP password.
+  --mailer_encryption   SMTP encryption: null | tls | ssl
+  --mailer_auth_mode    SMTP auth mode: null | plain | login | cram-md5
+  --mailer_spool_type   Spool mode: file | memory
+  --mailer_spool_path   Spool path.
+
+USING local.php
+---------------
+
+Create a local.php file with a $parameters array, for example:
+
+  <?php
+  $parameters = array(
+    'db_host'           => 'localhost',
+    'db_port'           => 3306,
+    'db_name'           => 'mautic',
+    'db_user'           => 'mautic',
+    'db_password'       => 'mautic',
+    'db_backup_tables'  => false,
+    'db_backup_prefix'  => 'bak_',
+    'admin_email'       => 'admin@example.com',
+    'admin_password'    => 'Maut1cR0cks!',
+    'mailer_transport'  => null,
+    'mailer_host'       => null,
+    'mailer_port'       => null,
+    'mailer_user'       => null,
+    'mailer_password'   => null,
+    'mailer_api_key'    => null,
+    'mailer_encryption' => null,
+    'mailer_auth_mode'  => null,
+  );
+
+Then run:
+
+  path/to/php bin/console mautic:install https://m.example.com
+
+Parameters can also be passed inline on the same command if needed.
+
+INSTALL OUTPUT
+--------------
+
+The installer flags warnings for non-critical issues and aborts
+on critical errors. A successful run ends with:
+
+  ================
+  Install complete
+  ================

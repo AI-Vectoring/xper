@@ -1,0 +1,66 @@
+WEB INSTALLER
+=============
+
+[Index] > [Production Package]
+
+Access your Mautic instance URL in a browser, for example:
+
+  https://m.example.com
+
+STEP 1 - ENVIRONMENT CHECKS
+----------------------------
+
+The installer validates the server environment before proceeding.
+
+  Green   - check passed, continue.
+  Orange  - warning, recommendation for a better experience.
+  Red     - error, must be resolved before installation can proceed.
+
+STEP 2 - DATABASE SETUP
+------------------------
+
+Mautic assumes the database is on the same server.
+
+Fields to complete:
+
+  Database Driver       (required)
+  Database Host         (required)
+  Database Name         (required)
+  Database Username     (required)
+  Database Port         (optional)
+  Database Table Prefix (optional)
+  Database Password     (optional)
+  Prefix for backup tables (optional)
+
+  Backup existing tables? - ON by default.
+  Turn this OFF for a new installation.
+
+STEP 3 - ADMINISTRATOR ACCOUNT
+-------------------------------
+
+Enter values for all fields on the Administrative User screen.
+
+STEP 4 - EMAIL CONFIGURATION
+-----------------------------
+
+  From name and email address - used for all outgoing email.
+  The from address must be authorized by your email provider.
+
+  Queue emails via cron job - recommended for large sending volumes
+  instead of sending immediately.
+
+  Mailer transport - select your provider. If unlisted, choose
+  "Other SMTP Server" and enter SMTP credentials manually.
+  API-based sending is significantly faster than SMTP.
+
+  Server and Port     - for your email provider.
+  Encryption          - for your email provider.
+  Authentication mode - for your email provider.
+
+  For local testing, use Mailhog. See [DDEV] for a pre-configured
+  local environment that includes Mailhog.
+
+STEP 5 - LOGIN
+--------------
+
+Enter your administrator credentials to log in.

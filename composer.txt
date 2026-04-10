@@ -1,0 +1,76 @@
+COMPOSER
+========
+
+[Index]
+
+Available since Mautic 4. Install and manage Mautic using the
+full power of Composer and the Recommended Project template.
+
+Note: Mautic is in the process of decoupling Plugins and Themes
+from core. They are technically mirrored into separate repos,
+but source files still live in the main Mautic GitHub repo.
+
+When cloning from GitHub, running `composer install` installs
+all dependencies.
+
+RECOMMENDED PROJECT
+-------------------
+
+The Recommended Project is a template that provides a starter
+kit for managing Mautic dependencies with Composer.
+
+Create a new project:
+
+  composer create-project mautic/recommended-project:^5 some-dir --no-interaction
+
+Add a dependency:
+
+  cd your-directory
+  composer require mautic/helloworld-bundle
+
+IMPORTANT: The core app files are placed in a `docroot/` folder.
+Configure your web server to serve from that directory, not the
+project root. Update your virtual host or NGINX config to point
+to <your-directory>/docroot as the root directory. Failure to
+do this will cause errors on access.
+
+PROJECT STRUCTURE
+-----------------
+
+After installation:
+
+  docroot/              Mautic core files. Web server root.
+  vendor/autoload.php   Composer autoloader (use this, not
+                        docroot/vendor/autoload.php).
+  docroot/plugins/      Plugins (type: mautic-plugin).
+  docroot/themes/       Themes (type: mautic-theme).
+  docroot/media/        Created automatically.
+  .env                  Environment variables (see .env.example).
+
+CHANGING THE ROOT FOLDER
+------------------------
+
+To use `public/` instead of `docroot/`:
+
+New installation:
+
+  1. Run create-project with --no-install flag.
+  2. Find and replace `docroot/` with `public/` in composer.json.
+  3. Review changes to ensure no unintentional replacements.
+  4. Run `composer install`.
+
+Existing installation:
+
+  1. Move the directory:   mv docroot public
+  2. Find and replace `docroot/` with `public/` in composer.json.
+  3. Review changes.
+  4. Run `composer update --lock`.
+
+Remember to update your web server configuration to point to
+the new folder.
+
+SEE ALSO
+--------
+
+[Composer FAQ]
+  Commit policy, scaffolding, patches, PHP version, custom roots.

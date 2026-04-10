@@ -1,0 +1,45 @@
+REQUIREMENTS
+============
+
+[Index] > [Production Package]
+
+Before installing, ensure all of the following are met.
+
+SERVER
+------
+
+* Environment meets minimum requirements for the version you
+  are installing. See Mautic's Requirements documentation.
+
+* The web server directory is writable by the Mautic web server.
+
+DATABASE
+--------
+
+* Meets minimum requirements for supported databases.
+
+* Valid user permissions to access the database.
+
+* See Mautic's Requirements documentation for specifics.
+
+DISK
+----
+
+* Enough free disk space to run the installation.
+
+* Account for database size growth over time.
+
+PHP
+---
+
+* max_execution_time must be at least 240 seconds.
+
+  This is a hard requirement. The installer will fail or behave
+  unpredictably if this value is lower.
+
+SSL
+---
+
+* It is recommended to secure your installation with an SSL
+  certificate (https). Some browser features will not work
+  without it.

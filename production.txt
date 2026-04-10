@@ -1,0 +1,36 @@
+PRODUCTION PACKAGE
+==================
+
+[Index]
+
+Install Mautic from the production zip package using either the
+web-based installer or the command line.
+
+Requires access to a database server.
+
+INSTALLATION STEPS
+------------------
+
+1. Integrate the database server with Mautic.
+2. Create an administrator account.
+3. Set up the email server for email marketing automation.
+
+SUBTOPICS
+---------
+
+[Requirements]
+  Server, database, disk, and PHP prerequisites.
+
+[Web Installer]
+  Browser-based setup wizard with environment checks.
+
+[CLI Install]
+  Terminal-based installation via parameters or local.php file.
+
+DOWNLOAD
+--------
+
+Download the latest stable release zip from the Mautic Releases
+page. Upload and unzip it into the directory where you plan to
+host Mautic. The web server must have permissions to access the
+unzipped files.
