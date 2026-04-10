@@ -82,9 +82,30 @@ source_id   UUID → nodes.id
 target_id   UUID → nodes.id
 label       text
 description text
+link_type   ENUM('child', 'see_also', 'prerequisite')  DEFAULT 'child'
 ```
 
 Link integrity is enforced at the database level. A link cannot point to a non-existent node. This eliminates the broken-link failure mode present in file-based implementations.
+
+### Link Types
+
+**`child`** — the target is a subtopic of the source. This is the primary navigation type. The LLM follows child links to move deeper into the hierarchy toward an answer. All navigation operates on child links first.
+
+**`see_also`** — the target is related content located elsewhere in the tree. These are cross-references, not hierarchy. The navigation tool returns them separately from child links and suppresses them during primary traversal. They become candidates only after the child path is exhausted without an answer, acting as a structured bridge to the search fallback. Without this separation, every cross-reference would become a navigation branch, turning a directed traversal into an unbounded search.
+
+**`prerequisite`** — the target must be read before the source can be fully understood. These are directed dependency edges. They do not participate in navigation at all; they answer a different question: "what must I know first?" On a relational database, finding all prerequisites for a node is a single query:
+
+```sql
+SELECT n.*
+FROM nodes n
+JOIN links l ON l.source_id = n.id
+WHERE l.target_id = :node_id
+  AND l.link_type = 'prerequisite'
+```
+
+This enables learning path generation, onboarding sequencing, and dependency analysis — none of which are recoverable from tree structure alone.
+
+Note that `child` and `prerequisite` can coexist between the same pair of nodes. "Server Requirements" is a child of "Production Install" (navigate there to learn more) and also a prerequisite of "Installation Steps" (read this before proceeding). These are different semantic relationships stored as two separate link rows.
 
 ---
 
@@ -119,6 +140,10 @@ Source material (URL, document, corpus)
     - one node per coherent topic unit
     - link labels named to match navigating model's reasoning
     - link descriptions that enable follow/skip decisions
+    - link types that encode structural intent:
+        child       → this is a subtopic
+        see_also    → this is related content elsewhere
+        prerequisite → this must be read first
         ↓
   Nodes written to database
   Embeddings generated at write time

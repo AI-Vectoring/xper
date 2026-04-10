@@ -69,6 +69,10 @@ Source (URL / document / corpus)
     - identifies topics and subtopics
     - writes focused node content
     - names links semantically
+    - assigns link_type to each link:
+        child       → target is a subtopic of this node
+        see_also    → target is related content elsewhere in the tree
+        prerequisite → target must be understood before this node
         ↓
   Nodes stored in database
         ↓
@@ -103,6 +107,7 @@ The LLM never sees file paths, database IDs, or directory structure. It only see
 - Return a structured error if the link does not exist
 - Track traversal path for the current session (enables backtracking)
 - Log navigation paths for analysis and improvement
+- Return `child` links and `see_also` links in separate groups — the LLM exhausts child links before considering see_also links. `prerequisite` links are never returned by `follow_link`; they are queried separately when building a reading path.
 
 ---
 
@@ -130,6 +135,7 @@ source_id   UUID, foreign key → nodes.id
 target_id   UUID, foreign key → nodes.id
 label       text — the [Link Label] as it appears in content
 description text — one-line description shown to navigating LLM
+link_type   text — 'child' | 'see_also' | 'prerequisite', default 'child'
 ```
 
 ### Vector extension
